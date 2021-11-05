@@ -11,11 +11,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listNoteFragment listNoteFragment = new listNoteFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, listNoteFragment)
-                .commit();
+        if (savedInstanceState == null){
+            listNoteFragment listNoteFragment = new listNoteFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, listNoteFragment)
+                    .commit();
+        }
+
 
     }
 }

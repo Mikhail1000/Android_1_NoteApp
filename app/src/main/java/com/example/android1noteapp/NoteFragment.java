@@ -43,6 +43,9 @@ public class NoteFragment extends Fragment {
             index = getArguments().getInt(ARG_INDEX);
             notes = getArguments().getParcelableArrayList(ARG_NOTES);
         }
+        if (savedInstanceState != null){
+            requireActivity().getSupportFragmentManager().popBackStack();
+        }
     }
 
     @Override
@@ -64,7 +67,7 @@ public class NoteFragment extends Fragment {
                 LinearLayout layoutView = (LinearLayout) view;
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.setMargins(15, 10, 15, 10);
+                layoutParams.setMargins(25, 20, 25, 20);
                 Notes note = notes.get(index);
                 TextView title = new TextView(getContext());
                 title.setText(note.getNameNote());

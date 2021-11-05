@@ -1,5 +1,6 @@
 package com.example.android1noteapp;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,8 @@ import java.util.GregorianCalendar;
 
 public class listNoteFragment extends Fragment {
 
+    public static final String CURRENT_NOTE = "current_note";
+    private int currentNote = 0;
     ArrayList<Notes> notes = new ArrayList<>();
 
     // TODO: Rename parameter arguments, choose names that match
@@ -62,7 +65,25 @@ public class listNoteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (savedInstanceState != null){
+            currentNote = savedInstanceState.getInt(CURRENT_NOTE, 0);
+        }
+
         initList(view);
+
+        if (isLandscape()){
+            showLandNote(currentNote);
+        }
+    }
+
+    private boolean isLandscape() {
+        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(CURRENT_NOTE, currentNote);
+        super.onSaveInstanceState(outState);
     }
 
     private void initList(View view) {
@@ -78,16 +99,37 @@ public class listNoteFragment extends Fragment {
             layoutView.addView(tv);
             final int position = i;
             tv.setOnClickListener(v -> {
+                currentNote = position;
                 showNote(position);
             });
         }
     }
 
     private void showNote(int index) {
+        if (isLandscape()){
+            showLandNote(index);
+        } else {
+            showPortNote(index);
+        }
+    }
+
+    private void showPortNote(int index) {
         NoteFragment noteFragment = NoteFragment.newInstance(index, notes);
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container, noteFragment)
+                .addToBackStack("")
                 .commit();
     }
+
+    private void showLandNote(int index) {
+        NoteFragment detail = NoteFragment.newInstance(index, notes);
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_note, detail)
+                .commit();
+
+    }
+
+
 }
