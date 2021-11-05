@@ -19,4 +19,28 @@ public class Notes {
         this.descriptionNote = descriptionNote;
         this.dateCreate = new GregorianCalendar();
     }
+
+    public String getNameNote() {
+        return nameNote;
+    }
+
+    public void setNameNote(String nameNote) {
+        this.nameNote = nameNote;
+    }
+
+    public String getDescriptionNote() {
+        return descriptionNote;
+    }
+
+    public void setDescriptionNote(String descriptionNote) {
+        this.descriptionNote = descriptionNote;
+    }
+
+    public Calendar getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(Calendar dateCreate) {
+        this.dateCreate = dateCreate;
+    }
 }
