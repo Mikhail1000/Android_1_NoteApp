@@ -11,6 +11,7 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,37 +24,17 @@ public class listNoteFragment extends Fragment {
     public static final String CURRENT_NOTE = "current_note";
     private int currentNote = 0;
     ArrayList<Notes> notes = new ArrayList<>();
+    ArrayList<Setting> settings = new ArrayList<>();
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_INDEX = "index";
     private static final String ARG_NOTES = "notes";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public listNoteFragment() {
         // Required empty public constructor
     }
-
-    /*public static listNoteFragment newInstance(int index, ArrayList<Notes> notes) {
-        listNoteFragment fragment = new listNoteFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_INDEX, index);
-        args.putParcelableArrayList(ARG_NOTES, notes);
-        fragment.setArguments(args);
-        return fragment;
-    }*/
-
-    /*@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_INDEX);
-            mParam2 = getArguments().getString(ARG_NOTES);
-        }
-    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,10 +51,23 @@ public class listNoteFragment extends Fragment {
         }
 
         initList(view);
+        initButtons(view);
 
         if (isLandscape()){
             showLandNote(currentNote);
         }
+    }
+
+    private void initButtons(View view) {
+        settings.add(new Setting("Ночная тема", "0"));
+        settings.add(new Setting("Русский язык", "1"));
+        settings.add(new Setting("От старых к новым", "0"));
+
+
+        Button buttonSettings = view.findViewById(R.id.button_settings);
+        buttonSettings.findViewById(R.id.button_settings).setOnClickListener(v -> {
+            showSettings();
+        });
     }
 
     private boolean isLandscape() {
@@ -117,8 +111,8 @@ public class listNoteFragment extends Fragment {
         NoteFragment noteFragment = NoteFragment.newInstance(index, notes);
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fragment_container, noteFragment)
                 .addToBackStack("")
+                .add(R.id.fragment_container, noteFragment)
                 .commit();
     }
 
@@ -128,7 +122,19 @@ public class listNoteFragment extends Fragment {
                 .beginTransaction()
                 .replace(R.id.fragment_note, detail)
                 .commit();
+    }
 
+    private void showSettings() {
+        showPortNote();
+    }
+
+    private void showPortNote() {
+        SettingsFragment settingsFragment = SettingsFragment.newInstance(settings);
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack("")
+                .add(R.id.fragment_container, settingsFragment)
+                .commit();
     }
 
 
