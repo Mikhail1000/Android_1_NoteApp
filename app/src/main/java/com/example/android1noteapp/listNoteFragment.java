@@ -53,10 +53,12 @@ public class listNoteFragment extends Fragment {
         initList(view);
         initButtons(view);
 
+
         if (isLandscape()){
             showLandNote(currentNote);
         }
     }
+
 
     private void initButtons(View view) {
         settings.add(new Setting("Ночная тема", "0"));
