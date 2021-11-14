@@ -6,7 +6,7 @@
         android:icon="@android:drawable/ic_dialog_info"
         android:id="@+id/action_about"
         android:title="@string/about_app"
-        app:showAsAction="always"
+        app:showAsAction="withText"
         android:orderInCategory="3"
         />
 

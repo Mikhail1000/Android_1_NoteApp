@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
 
             if (id == R.id.action_about) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack("")
+                        .add(R.id.fragment_container, new AboutAppFragment())
+                        .commit();
                 drawerLayout.closeDrawers();
                 return true;
             } else if (id == R.id.action_search){
@@ -76,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_about) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack("")
+                    .add(R.id.fragment_container, new AboutAppFragment())
+                    .commit();
             return true;
         } else if (id == R.id.action_search){
             return true;

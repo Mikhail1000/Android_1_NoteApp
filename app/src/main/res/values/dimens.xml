@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_title_navigation">30sp</dimen>
+    <dimen name="navigation_width_image">100dp</dimen>
+    <dimen name="navigation_height_image">100dp</dimen>
+</resources>
