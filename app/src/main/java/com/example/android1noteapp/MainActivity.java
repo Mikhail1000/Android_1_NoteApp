@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
 
-
         if (savedInstanceState == null){
             listNoteFragment listNoteFragment = new listNoteFragment();
             getSupportFragmentManager()
@@ -29,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container, listNoteFragment)
                     .commit();
         }
-
-
-
     }
 
     private void initToolbar(){

@@ -59,8 +59,6 @@ public class NoteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_INDEX);
             notes = getArguments().getParcelableArrayList(ARG_NOTES);

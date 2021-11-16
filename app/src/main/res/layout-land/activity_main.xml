@@ -1,26 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    tools:context=".MainActivity"
-    android:baselineAligned="false">
+    tools:openDrawer="start"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="0px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                app:title="@string/app_name"
+                app:subtitle="Main"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/white"
+                app:subtitleTextColor="@color/white"
+                android:background="@color/purple_700"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </FrameLayout>
+
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        tools:context=".MainActivity"
+        android:baselineAligned="false">
+
+
+
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+        <FrameLayout
+            android:id="@+id/fragment_note"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/teal_200"
+            />
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/navigation_view"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/drawer"
         />
 
-    <FrameLayout
-        android:id="@+id/fragment_note"
-        android:layout_width="0px"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/teal_200"
-        />
 
-</LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
