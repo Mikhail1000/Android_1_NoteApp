@@ -1,6 +1,6 @@
 package com.example.android1noteapp;
 
-import android.graphics.Color;
+import android.app.AlertDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import java.util.ArrayList;
 
@@ -60,6 +61,8 @@ public class NoteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_INDEX);
             notes = getArguments().getParcelableArrayList(ARG_NOTES);
@@ -81,6 +84,12 @@ public class NoteFragment extends Fragment {
                 description.setTextSize(20);
                 description.setBackgroundResource(R.color.white);
                 layoutView.addView(description, layoutParams);
+                view.findViewById(R.id.button_delete).setOnClickListener(v -> new AlertDialog.Builder(requireContext())
+                        .setTitle("Подтверждение удаления")
+                        .setMessage("Вы уверены что хотите удалить заметку")
+                        .setNeutralButton("Отменить", null)
+                        .setPositiveButton("Да", null)
+                        .show());
                 String nameNote = note.getNameNote();
                 Toast.makeText(requireContext(), nameNote, Toast.LENGTH_SHORT).show();
             }
