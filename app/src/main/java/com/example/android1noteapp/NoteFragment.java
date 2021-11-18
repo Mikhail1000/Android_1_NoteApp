@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -80,6 +81,8 @@ public class NoteFragment extends Fragment {
                 description.setTextSize(20);
                 description.setBackgroundResource(R.color.white);
                 layoutView.addView(description, layoutParams);
+                String nameNote = note.getNameNote();
+                Toast.makeText(requireContext(), nameNote, Toast.LENGTH_SHORT).show();
             }
         }
     }
