@@ -5,7 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 
 public class listNoteFragment extends Fragment {
@@ -56,6 +59,10 @@ public class listNoteFragment extends Fragment {
         CardsAdapter adapter = new CardsAdapter(notes);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext());
 
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL);
+        dividerItemDecoration.setDrawable(Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.separator)));
+
+        recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 

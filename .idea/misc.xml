@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/drawable/separator.xml" value="0.32083333333333336" />
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/layout-land/a.xml" value="0.25793650793650796" />
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/layout-land/activity_main.xml" value="0.25793650793650796" />
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/layout-port/activity_main.xml" value="0.3046875" />
@@ -12,7 +13,7 @@
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/layout/fragment_note.xml" value="0.22" />
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/layout/fragment_settings.xml" value="0.3046875" />
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/layout/header.xml" value="0.3046875" />
-        <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/layout/recycler_view_item_layout.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/layout/recycler_view_item_layout.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/menu/drawer.xml" value="0.3046875" />
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/menu/main.xml" value="0.3046875" />
         <entry key="..\:/Users/MT100/AndroidStudioProjects/Android1NoteApp/app/src/main/res/menu/popup.xml" value="0.3333333333333333" />

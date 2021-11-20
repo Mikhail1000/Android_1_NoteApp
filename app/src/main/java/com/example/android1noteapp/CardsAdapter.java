@@ -8,9 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.time.temporal.Temporal;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
@@ -41,7 +39,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
     }
 
     static class CardViewHolder extends RecyclerView.ViewHolder {
-        TextView textView = itemView.findViewById(R.id.text_view_card);
+        TextView textView = itemView.findViewById(R.id.text_view_card_title);
+        TextView textViewDescription = itemView.findViewById(R.id.text_view_card_description);
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -49,6 +48,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
 
         void bind(Notes notes) {
             textView.setText(notes.getNameNote());
+            textViewDescription.setText(notes.getDescriptionNote());
         }
 
     }
