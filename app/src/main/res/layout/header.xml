@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/teal_700"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_marginTop="50dp"
+    android:layout_height="200dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_title_navigation"
+        android:text="@string/notes"
+
+        />
+
+    <ImageView
+        android:layout_width="@dimen/navigation_width_image"
+        android:layout_height="@dimen/navigation_height_image"
+        android:src="@android:drawable/ic_dialog_map"/>
+
+</LinearLayout>
