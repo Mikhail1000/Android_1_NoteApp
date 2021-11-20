@@ -13,6 +13,11 @@ import java.util.ArrayList;
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
     private ArrayList<Notes> notesList;
+    private OnCardClickListener clickListener;
+
+    public void setClickListener(OnCardClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     public CardsAdapter(ArrayList<Notes> notesList) {
         this.notesList = notesList;
@@ -38,7 +43,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         return notesList.size();
     }
 
-    static class CardViewHolder extends RecyclerView.ViewHolder {
+    class CardViewHolder extends RecyclerView.ViewHolder {
         TextView textView = itemView.findViewById(R.id.text_view_card_title);
         TextView textViewDescription = itemView.findViewById(R.id.text_view_card_description);
 
@@ -49,8 +54,17 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         void bind(Notes notes) {
             textView.setText(notes.getNameNote());
             textViewDescription.setText(notes.getDescriptionNote());
+            itemView.setOnClickListener(v -> {
+              if (clickListener != null) {
+                  clickListener.onCardClick(v, getAdapterPosition());
+              }
+            });
         }
 
+    }
+
+    interface OnCardClickListener {
+        void onCardClick(View view, int position);
     }
 
 

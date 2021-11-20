@@ -57,6 +57,10 @@ public class listNoteFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
         CardsAdapter adapter = new CardsAdapter(notes);
+        adapter.setClickListener((view1, position) -> {
+            currentNote = position;
+            showNote(position);
+        });
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext());
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL);
@@ -109,7 +113,7 @@ public class listNoteFragment extends Fragment {
         notes.add(new Notes("Заголовок 8", "Описание заметки 8", new GregorianCalendar()));
         notes.add(new Notes("Заголовок 9", "Описание заметки 9", new GregorianCalendar()));
 
-        LinearLayout layoutView = (LinearLayout) view;
+        /*LinearLayout layoutView = (LinearLayout) view;
         for (int i = 0; i < notes.size(); i++) {
             TextView tv = new TextView(getContext());
             tv.setText(notes. get(i).getNameNote());
@@ -120,7 +124,7 @@ public class listNoteFragment extends Fragment {
                 currentNote = position;
                 showNote(position);
             });
-        }
+        }*/
     }
 
     private void showNote(int index) {
@@ -149,10 +153,10 @@ public class listNoteFragment extends Fragment {
     }
 
     private void showSettings() {
-        showPortNote();
+        showPortSettings();
     }
 
-    private void showPortNote() {
+    private void showPortSettings() {
         SettingsFragment settingsFragment = SettingsFragment.newInstance(settings);
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
