@@ -10,4 +10,6 @@
     <string name="about_app">О приложении</string>
     <string name="search">Поиск</string>
     <string name="notes">Заметки</string>
+    <string name="text_toast_note">Ваша заметка</string>
+    <string name="delete_note">Удалить заметку</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
 
-
         if (savedInstanceState == null){
             listNoteFragment listNoteFragment = new listNoteFragment();
             getSupportFragmentManager()
@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container, listNoteFragment)
                     .commit();
         }
-
-
-
     }
 
     private void initToolbar(){
@@ -92,5 +89,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+        Toast.makeText(this, "Вы вышли из приложения", Toast.LENGTH_SHORT).show();
     }
 }
