@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -50,6 +52,13 @@ public class listNoteFragment extends Fragment {
             currentNote = savedInstanceState.getInt(CURRENT_NOTE, 0);
         }
 
+        RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
+        CardsAdapter adapter = new CardsAdapter(notes);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext());
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
         initList(view);
         initButtons(view);
 
@@ -86,6 +95,12 @@ public class listNoteFragment extends Fragment {
         notes.add(new Notes("Заголовок 1", "Описание заметки 1", new GregorianCalendar()));
         notes.add(new Notes("Заголовок 2", "Описание заметки 2", new GregorianCalendar()));
         notes.add(new Notes("Заголовок 3", "Описание заметки 3", new GregorianCalendar()));
+        notes.add(new Notes("Заголовок 4", "Описание заметки 4", new GregorianCalendar()));
+        notes.add(new Notes("Заголовок 5", "Описание заметки 5", new GregorianCalendar()));
+        notes.add(new Notes("Заголовок 6", "Описание заметки 6", new GregorianCalendar()));
+        notes.add(new Notes("Заголовок 7", "Описание заметки 7", new GregorianCalendar()));
+        notes.add(new Notes("Заголовок 8", "Описание заметки 8", new GregorianCalendar()));
+        notes.add(new Notes("Заголовок 9", "Описание заметки 9", new GregorianCalendar()));
 
         LinearLayout layoutView = (LinearLayout) view;
         for (int i = 0; i < notes.size(); i++) {
