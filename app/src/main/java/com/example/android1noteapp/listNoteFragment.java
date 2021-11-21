@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -56,7 +58,7 @@ public class listNoteFragment extends Fragment {
         }
 
         RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
-        CardsAdapter adapter = new CardsAdapter(notes);
+        CardsAdapter adapter = new CardsAdapter(requireActivity(), notes);
         adapter.setClickListener((view1, position) -> {
             currentNote = position;
             showNote(position);
@@ -166,4 +168,23 @@ public class listNoteFragment extends Fragment {
     }
 
 
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        requireActivity().getMenuInflater().inflate(R.menu.context_menu, menu);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.action_context_delete_note){
+
+        } else if (item.getItemId() == R.id.action_context_update_note){
+
+        }
+
+        return super.onContextItemSelected(item);
+
+    }
 }

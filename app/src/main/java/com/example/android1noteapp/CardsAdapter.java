@@ -1,5 +1,6 @@
 package com.example.android1noteapp;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
+    private final Activity activity;
     private ArrayList<Notes> notesList;
     private OnCardClickListener clickListener;
 
@@ -19,9 +21,11 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         this.clickListener = clickListener;
     }
 
-    public CardsAdapter(ArrayList<Notes> notesList) {
+    public CardsAdapter(Activity activity, ArrayList<Notes> notesList) {
+        this.activity = activity;
         this.notesList = notesList;
     }
+
 
     @NonNull
     @Override
@@ -47,8 +51,18 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         TextView textView = itemView.findViewById(R.id.text_view_card_title);
         TextView textViewDescription = itemView.findViewById(R.id.text_view_card_description);
 
+        int menu_position = -1;
+
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            itemView.setOnLongClickListener(v -> {
+                menu_position = getLayoutPosition();
+
+                return false;
+            });
+
+            activity.registerForContextMenu(itemView);
         }
 
         void bind(Notes notes) {

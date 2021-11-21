@@ -12,4 +12,6 @@
     <string name="notes">Заметки</string>
     <string name="text_toast_note">Ваша заметка</string>
     <string name="delete_note">Удалить заметку</string>
+    <string name="update_note">Изменить заметку</string>
+    <string name="delete_note">Удалить заметку</string>
 </resources>
