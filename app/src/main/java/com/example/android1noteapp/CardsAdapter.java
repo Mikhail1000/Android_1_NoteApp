@@ -68,28 +68,19 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         void bind(Notes notes) {
             textView.setText(notes.getNameNote());
             textViewDescription.setText(notes.getDescriptionNote());
-            textView.setOnClickListener(v -> {
+            itemView.setOnClickListener(v -> {
               if (clickListener != null) {
                   clickListener.onCardClick(v, getAdapterPosition());
               }
             });
-            //textViewDescription.setLongClickable(true);
-            textViewDescription.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    menu_position = getLayoutPosition();
 
-                    textViewDescription.showContextMenu(10,10);
-                    return false;
-                }
+            itemView.setOnLongClickListener(v -> {
+                menu_position = getLayoutPosition();
+
+                itemView.showContextMenu(10,10);
+                return false;
             });
-            /*textView.setOnClickListener(v -> {
-              if (clickListener != null) {
-                  menu_position = getLayoutPosition();
 
-                  textViewDescription.showContextMenu(10,10);
-              }
-            });*/
 
         }
 

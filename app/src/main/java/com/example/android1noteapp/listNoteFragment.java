@@ -175,7 +175,7 @@ public class listNoteFragment extends Fragment {
                 .commit();
     }
 
-    @Override
+    /*@Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         requireActivity().getMenuInflater().inflate(R.menu.main, menu);
         super.onCreateOptionsMenu(menu, inflater);
@@ -205,9 +205,9 @@ public class listNoteFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         requireActivity().getMenuInflater().inflate(R.menu.context_menu, menu);
@@ -226,5 +226,5 @@ public class listNoteFragment extends Fragment {
 
         return super.onContextItemSelected(item);
 
-    }
+    }*/
 }
