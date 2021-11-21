@@ -1,12 +1,14 @@
 package com.example.android1noteapp;
 
 import android.app.Activity;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -14,16 +16,21 @@ import java.util.ArrayList;
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
     private final Activity activity;
-    private ArrayList<Notes> notesList;
+    private CardSourceImp source;
     private OnCardClickListener clickListener;
+    int menu_position = -1;
+
+    public int getMenu_position() {
+        return menu_position;
+    }
 
     public void setClickListener(OnCardClickListener clickListener) {
         this.clickListener = clickListener;
     }
 
-    public CardsAdapter(Activity activity, ArrayList<Notes> notesList) {
+    public CardsAdapter(Activity activity, CardSourceImp notesList) {
         this.activity = activity;
-        this.notesList = notesList;
+        this.source = notesList;
     }
 
 
@@ -35,44 +42,55 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-
-        holder.bind(notesList.get(position));
-
+        holder.bind(source.getNote(position));
     }
 
     @Override
     public int getItemCount() {
-        return notesList.size();
+        return source.size();
     }
 
     class CardViewHolder extends RecyclerView.ViewHolder {
         TextView textView = itemView.findViewById(R.id.text_view_card_title);
         TextView textViewDescription = itemView.findViewById(R.id.text_view_card_description);
 
-        int menu_position = -1;
-
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            itemView.setOnLongClickListener(v -> {
-                menu_position = getLayoutPosition();
-
-                return false;
-            });
 
             activity.registerForContextMenu(itemView);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         void bind(Notes notes) {
             textView.setText(notes.getNameNote());
             textViewDescription.setText(notes.getDescriptionNote());
-            itemView.setOnClickListener(v -> {
+            textView.setOnClickListener(v -> {
               if (clickListener != null) {
                   clickListener.onCardClick(v, getAdapterPosition());
               }
             });
+            //textViewDescription.setLongClickable(true);
+            textViewDescription.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    menu_position = getLayoutPosition();
+
+                    textViewDescription.showContextMenu(10,10);
+                    return false;
+                }
+            });
+            /*textView.setOnClickListener(v -> {
+              if (clickListener != null) {
+                  menu_position = getLayoutPosition();
+
+                  textViewDescription.showContextMenu(10,10);
+              }
+            });*/
+
         }
 
     }

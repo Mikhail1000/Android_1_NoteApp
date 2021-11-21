@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Parcelable;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,7 @@ public class listNoteFragment extends Fragment {
 
     public static final String CURRENT_NOTE = "current_note";
     private int currentNote = 0;
-    ArrayList<Notes> notes = new ArrayList<>();
+    static CardSourceImp source;
     ArrayList<Setting> settings = new ArrayList<>();
 
     private static final String ARG_INDEX = "index";
@@ -38,6 +40,8 @@ public class listNoteFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    static CardsAdapter adapter;
 
     public listNoteFragment() {
         // Required empty public constructor
@@ -58,7 +62,10 @@ public class listNoteFragment extends Fragment {
         }
 
         RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
-        CardsAdapter adapter = new CardsAdapter(requireActivity(), notes);
+
+        source = new CardSourceImp(requireContext());
+
+        adapter = new CardsAdapter(requireActivity(), source);
         adapter.setClickListener((view1, position) -> {
             currentNote = position;
             showNote(position);
@@ -80,6 +87,7 @@ public class listNoteFragment extends Fragment {
             showLandNote(currentNote);
         }
     }
+
 
 
     private void initButtons(View view) {
@@ -105,7 +113,7 @@ public class listNoteFragment extends Fragment {
     }
 
     private void initList(View view) {
-        notes.add(new Notes("Заголовок 1", "Описание заметки 1", new GregorianCalendar()));
+        /*notes.add(new Notes("Заголовок 1", "Описание заметки 1", new GregorianCalendar()));
         notes.add(new Notes("Заголовок 2", "Описание заметки 2", new GregorianCalendar()));
         notes.add(new Notes("Заголовок 3", "Описание заметки 3", new GregorianCalendar()));
         notes.add(new Notes("Заголовок 4", "Описание заметки 4", new GregorianCalendar()));
@@ -113,7 +121,7 @@ public class listNoteFragment extends Fragment {
         notes.add(new Notes("Заголовок 6", "Описание заметки 6", new GregorianCalendar()));
         notes.add(new Notes("Заголовок 7", "Описание заметки 7", new GregorianCalendar()));
         notes.add(new Notes("Заголовок 8", "Описание заметки 8", new GregorianCalendar()));
-        notes.add(new Notes("Заголовок 9", "Описание заметки 9", new GregorianCalendar()));
+        notes.add(new Notes("Заголовок 9", "Описание заметки 9", new GregorianCalendar()));*/
 
         /*LinearLayout layoutView = (LinearLayout) view;
         for (int i = 0; i < notes.size(); i++) {
@@ -138,7 +146,7 @@ public class listNoteFragment extends Fragment {
     }
 
     private void showPortNote(int index) {
-        NoteFragment noteFragment = NoteFragment.newInstance(index, notes);
+        NoteFragment noteFragment = NoteFragment.newInstance(index, source);
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack("")
@@ -147,7 +155,7 @@ public class listNoteFragment extends Fragment {
     }
 
     private void showLandNote(int index) {
-        NoteFragment detail = NoteFragment.newInstance(index, notes);
+        NoteFragment detail = NoteFragment.newInstance(index, source);
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_note, detail)
@@ -167,6 +175,37 @@ public class listNoteFragment extends Fragment {
                 .commit();
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        requireActivity().getMenuInflater().inflate(R.menu.main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_about) {
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack("")
+                    .add(R.id.fragment_container, new AboutAppFragment())
+                    .commit();
+            return true;
+        } else if (id == R.id.action_search){
+            return true;
+        } else if (id == R.id.action_add_note){
+            source.addNote(new Notes("Добавленная заметка", "Это заметка добавленная через меню", new GregorianCalendar()));
+            adapter.notifyItemInserted(source.size() - 1);
+            return true;
+        } else if (id == R.id.action_clear_notes){
+            source.clearNote();
+            adapter.notify();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
@@ -179,9 +218,10 @@ public class listNoteFragment extends Fragment {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.action_context_delete_note){
-
+            return true;
         } else if (item.getItemId() == R.id.action_context_update_note){
-
+            adapter.getMenu_position();
+            return true;
         }
 
         return super.onContextItemSelected(item);

@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -85,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
             return true;
         } else if (id == R.id.action_search){
+            return true;
+        } else if (id == R.id.action_add_note){
+
+
             return true;
         }
 
