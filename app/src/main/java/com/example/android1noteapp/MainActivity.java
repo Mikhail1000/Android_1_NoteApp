@@ -121,12 +121,17 @@ public class MainActivity extends AppCompatActivity {
         int position = listNoteFragment.adapter.getMenu_position();
 
         if (item.getItemId() == R.id.action_context_delete_note){
-
             listNoteFragment.source.deleteNote(position);
             listNoteFragment.adapter.notifyItemRemoved(position);
             return true;
         } else if (item.getItemId() == R.id.action_context_update_note){
             //listNoteFragment.source.updateNote(listNoteFragment.adapter.getMenu_position(), );
+            EditNoteFragment editNoteFragment = EditNoteFragment.newInstance();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack("")
+                    .add(R.id.fragment_container, editNoteFragment)
+                    .commit();
             return true;
         }
 
