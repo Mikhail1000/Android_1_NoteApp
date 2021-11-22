@@ -2,6 +2,8 @@ package com.example.android1noteapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -37,11 +39,11 @@ public class EditNoteFragment extends Fragment {
      * @return A new instance of fragment EditNoteFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EditNoteFragment newInstance(String param1, String param2) {
+    public static EditNoteFragment newInstance() {
         EditNoteFragment fragment = new EditNoteFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        /*args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);*/
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,5 +62,15 @@ public class EditNoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_edit_note, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+
+
     }
 }

@@ -15,4 +15,6 @@
     <string name="update_note">Изменить заметку</string>
     <string name="add_note">Добавить заметку</string>
     <string name="delete_all_notes">Удалить все заметки</string>
+    <string name="hint_title_note">Заголовок заметки</string>
+    <string name="hint_description_note">Описание заметки</string>
 </resources>

@@ -89,8 +89,16 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_search){
             return true;
         } else if (id == R.id.action_add_note){
-            listNoteFragment.source.addNote(new Notes("Добавленная заметка", "Это заметка добавленная через меню", new GregorianCalendar()));
-            listNoteFragment.adapter.notifyItemInserted(listNoteFragment.source.size() - 1);
+            /*listNoteFragment.source.addNote(new Notes("Добавленная заметка", "Это заметка добавленная через меню", new GregorianCalendar()));
+            listNoteFragment.adapter.notifyItemInserted(listNoteFragment.source.size() - 1);*/
+
+            EditNoteFragment editNoteFragment = EditNoteFragment.newInstance();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack("")
+                    .add(R.id.fragment_container, editNoteFragment)
+                    .commit();
+
             return true;
         } else if (id == R.id.action_clear_notes){
             int size = listNoteFragment.source.size();
