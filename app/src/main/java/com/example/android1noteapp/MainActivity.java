@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             /*listNoteFragment.source.addNote(new Notes("Добавленная заметка", "Это заметка добавленная через меню", new GregorianCalendar()));
             listNoteFragment.adapter.notifyItemInserted(listNoteFragment.source.size() - 1);*/
 
-            EditNoteFragment editNoteFragment = EditNoteFragment.newInstance();
+            EditNoteFragment editNoteFragment = EditNoteFragment.newInstance("", "", -1);
             getSupportFragmentManager()
                     .beginTransaction()
                     .addToBackStack("")
@@ -126,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if (item.getItemId() == R.id.action_context_update_note){
             //listNoteFragment.source.updateNote(listNoteFragment.adapter.getMenu_position(), );
-            EditNoteFragment editNoteFragment = EditNoteFragment.newInstance();
+            Notes note = listNoteFragment.source.getNote(position);
+            EditNoteFragment editNoteFragment = EditNoteFragment.newInstance(note.getNameNote(),note.getDescriptionNote(),  position);
             getSupportFragmentManager()
                     .beginTransaction()
                     .addToBackStack("")

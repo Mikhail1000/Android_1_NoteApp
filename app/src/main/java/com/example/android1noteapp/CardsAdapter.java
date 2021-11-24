@@ -60,7 +60,6 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
 
-
             activity.registerForContextMenu(itemView);
         }
 

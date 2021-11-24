@@ -82,19 +82,15 @@ public class listNoteFragment extends Fragment {
         initList(view);
         initButtons(view);
 
-
         if (isLandscape()){
             showLandNote(currentNote);
         }
     }
 
-
-
     private void initButtons(View view) {
         settings.add(new Setting("Ночная тема", "0"));
         settings.add(new Setting("Русский язык", "1"));
         settings.add(new Setting("От старых к новым", "0"));
-
 
         Button buttonSettings = view.findViewById(R.id.button_settings);
         buttonSettings.findViewById(R.id.button_settings).setOnClickListener(v -> {
@@ -175,56 +171,4 @@ public class listNoteFragment extends Fragment {
                 .commit();
     }
 
-    /*@Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        requireActivity().getMenuInflater().inflate(R.menu.main, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_about) {
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .addToBackStack("")
-                    .add(R.id.fragment_container, new AboutAppFragment())
-                    .commit();
-            return true;
-        } else if (id == R.id.action_search){
-            return true;
-        } else if (id == R.id.action_add_note){
-            source.addNote(new Notes("Добавленная заметка", "Это заметка добавленная через меню", new GregorianCalendar()));
-            adapter.notifyItemInserted(source.size() - 1);
-            return true;
-        } else if (id == R.id.action_clear_notes){
-            source.clearNote();
-            adapter.notify();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
-    /*@Override
-    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        requireActivity().getMenuInflater().inflate(R.menu.context_menu, menu);
-
-    }
-
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-
-        if (item.getItemId() == R.id.action_context_delete_note){
-            return true;
-        } else if (item.getItemId() == R.id.action_context_update_note){
-            adapter.getMenu_position();
-            return true;
-        }
-
-        return super.onContextItemSelected(item);
-
-    }*/
 }
