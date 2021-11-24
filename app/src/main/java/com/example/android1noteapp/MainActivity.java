@@ -91,10 +91,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
 
-        super.onBackPressed();
+    @Override
+    protected void onStop() {
+        super.onStop();
         Toast.makeText(this, "Вы вышли из приложения", Toast.LENGTH_SHORT).show();
     }
 }

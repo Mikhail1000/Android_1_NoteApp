@@ -3,4 +3,12 @@
     <dimen name="text_size_title_navigation">30sp</dimen>
     <dimen name="navigation_width_image">100dp</dimen>
     <dimen name="navigation_height_image">100dp</dimen>
+    <dimen name="padding_horizontal_cards">5dp</dimen>
+    <dimen name="height_title_card">100dp</dimen>
+    <dimen name="padding_horizontal_text_card">5dp</dimen>
+    <dimen name="text_size_description_card">20sp</dimen>
+    <dimen name="text_size_title_card">30sp</dimen>
+    <dimen name="height_description_card">150dp</dimen>
+    <dimen name="card_corner_radius">15dp</dimen>
+    <dimen name="elevations_card">3dp</dimen>
 </resources>
