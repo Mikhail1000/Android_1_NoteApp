@@ -1,27 +1,38 @@
 package com.example.android1noteapp;
 
+import android.app.Activity;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
-    private ArrayList<Notes> notesList;
+    private final Activity activity;
+    private CardSourceImp source;
     private OnCardClickListener clickListener;
+    int menu_position = -1;
+
+    public int getMenu_position() {
+        return menu_position;
+    }
 
     public void setClickListener(OnCardClickListener clickListener) {
         this.clickListener = clickListener;
     }
 
-    public CardsAdapter(ArrayList<Notes> notesList) {
-        this.notesList = notesList;
+    public CardsAdapter(Activity activity, CardSourceImp notesList) {
+        this.activity = activity;
+        this.source = notesList;
     }
+
 
     @NonNull
     @Override
@@ -31,16 +42,15 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-
-        holder.bind(notesList.get(position));
-
+        holder.bind(source.getNote(position));
     }
 
     @Override
     public int getItemCount() {
-        return notesList.size();
+        return source.size();
     }
 
     class CardViewHolder extends RecyclerView.ViewHolder {
@@ -49,8 +59,11 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            activity.registerForContextMenu(itemView);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         void bind(Notes notes) {
             textView.setText(notes.getNameNote());
             textViewDescription.setText(notes.getDescriptionNote());
@@ -59,6 +72,15 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
                   clickListener.onCardClick(v, getAdapterPosition());
               }
             });
+
+            itemView.setOnLongClickListener(v -> {
+                menu_position = getLayoutPosition();
+
+                itemView.showContextMenu(10,10);
+                return false;
+            });
+
+
         }
 
     }

@@ -23,17 +23,17 @@ public class NoteFragment extends Fragment {
     private static final String ARG_INDEX = "index";
     private static final String ARG_NOTES = "notes";
     private int index = -1;
-    ArrayList<Notes> notes;
+    CardSourceImp notes;
 
     public NoteFragment() {
         // Required empty public constructor
     }
 
-    public static NoteFragment newInstance(int index, ArrayList<Notes> notes) {
+    public static NoteFragment newInstance(int index, CardSourceImp notes) {
         NoteFragment fragment = new NoteFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_INDEX, index);
-        args.putParcelableArrayList(ARG_NOTES, notes);
+        args.putParcelable(ARG_NOTES, notes);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,7 +43,7 @@ public class NoteFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_INDEX);
-            notes = getArguments().getParcelableArrayList(ARG_NOTES);
+            notes = getArguments().getParcelable(ARG_NOTES);
         }
         if (savedInstanceState != null){
             requireActivity().getSupportFragmentManager().popBackStack();
@@ -65,14 +65,14 @@ public class NoteFragment extends Fragment {
 
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_INDEX);
-            notes = getArguments().getParcelableArrayList(ARG_NOTES);
+            notes = getArguments().getParcelable(ARG_NOTES);
 
             if (index != -1) {
                 LinearLayout layoutView = (LinearLayout) view;
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 layoutParams.setMargins(25, 20, 25, 20);
-                Notes note = notes.get(index);
+                Notes note = notes.getNote(index);
                 TextView title = new TextView(getContext());
                 title.setText(note.getNameNote());
                 title.setTextSize(30);

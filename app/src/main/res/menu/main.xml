@@ -11,6 +11,22 @@
         />
 
     <item
+        android:icon="@android:drawable/ic_dialog_info"
+        android:id="@+id/action_add_note"
+        android:title="@string/add_note"
+        app:showAsAction="withText"
+        android:orderInCategory="1"
+        />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_info"
+        android:id="@+id/action_clear_notes"
+        android:title="@string/delete_all_notes"
+        app:showAsAction="withText"
+        android:orderInCategory="1"
+        />
+
+    <item
         android:icon="@android:drawable/ic_search_category_default"
         android:title="@string/search"
         android:id="@+id/action_search"
