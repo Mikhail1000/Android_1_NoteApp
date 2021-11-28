@@ -9,9 +9,9 @@ import java.util.GregorianCalendar;
 public class Notes implements Parcelable {
     private String nameNote;
     private String descriptionNote;
-    Calendar dateCreate;
+    GregorianCalendar dateCreate;
 
-    public Notes(String nameNote, String descriptionNote, Calendar dateCreate) {
+    public Notes(String nameNote, String descriptionNote, GregorianCalendar dateCreate) {
         this.nameNote = nameNote;
         this.descriptionNote = descriptionNote;
         this.dateCreate = dateCreate;
@@ -56,11 +56,11 @@ public class Notes implements Parcelable {
         this.descriptionNote = descriptionNote;
     }
 
-    public Calendar getDateCreate() {
+    public GregorianCalendar getDateCreate() {
         return dateCreate;
     }
 
-    public void setDateCreate(Calendar dateCreate) {
+    public void setDateCreate(GregorianCalendar dateCreate) {
         this.dateCreate = dateCreate;
     }
 

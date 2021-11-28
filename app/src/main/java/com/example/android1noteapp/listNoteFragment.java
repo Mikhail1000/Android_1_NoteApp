@@ -1,5 +1,7 @@
 package com.example.android1noteapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -32,8 +34,10 @@ public class listNoteFragment extends Fragment {
 
     public static final String CURRENT_NOTE = "current_note";
     private int currentNote = 0;
-    static CardSourceImp source;
+    static CardSource source;
     ArrayList<Setting> settings = new ArrayList<>();
+
+    private SharedPreferences sharedPreferences = null;
 
     private static final String ARG_INDEX = "index";
     private static final String ARG_NOTES = "notes";
@@ -61,9 +65,13 @@ public class listNoteFragment extends Fragment {
             currentNote = savedInstanceState.getInt(CURRENT_NOTE, 0);
         }
 
+        sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
+
+
         RecyclerView recyclerView = view.findViewById(R.id.recycle_view);
 
-        source = new CardSourceImp(requireContext());
+        //source = new CardSourceImp(requireContext());
+        source = new PreferencesCardSource(sharedPreferences);
 
         adapter = new CardsAdapter(requireActivity(), source);
         adapter.setClickListener((view1, position) -> {

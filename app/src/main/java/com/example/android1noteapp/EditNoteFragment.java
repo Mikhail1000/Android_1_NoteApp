@@ -1,5 +1,6 @@
 package com.example.android1noteapp;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +10,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.GregorianCalendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,5 +85,29 @@ public class EditNoteFragment extends Fragment {
 
         editTitleNote.setText(titleNote);
         editDescriptionNote.setText(descriptionNote);
+
+        Button buttonAddNote = view.findViewById(R.id.button_add_or_modify);
+        buttonAddNote.findViewById(R.id.button_add_or_modify).setOnClickListener(v -> {
+            EditText editTitle = view.findViewById(R.id.editText_title_note);
+            String textTitle = editTitle.getText().toString();
+            EditText editDescription = view.findViewById(R.id.editText_description_note);
+            String textDescription = editDescription.getText().toString();
+            GregorianCalendar gregorianCalendar = new GregorianCalendar();
+
+            if (menuPosition != -1) {
+                Notes note = listNoteFragment.source.getNote(menuPosition);
+                listNoteFragment.source.updateNote(menuPosition, new Notes(textTitle, textDescription, note.getDateCreate()));
+                listNoteFragment.adapter.notifyItemChanged(menuPosition);
+            } else {
+                listNoteFragment.source.addNote(new Notes(textTitle, textDescription, new GregorianCalendar()));
+                listNoteFragment.adapter.notifyItemInserted(listNoteFragment.source.size() - 1);
+            }
+
+            requireActivity().getSupportFragmentManager().popBackStack();
+
+            Context context = requireContext();
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        });
     }
 }
