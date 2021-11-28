@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +24,17 @@ public class NoteFragment extends Fragment {
     private static final String ARG_INDEX = "index";
     private static final String ARG_NOTES = "notes";
     private int index = -1;
-    CardSourceImp notes;
+    CardSource notes;
 
     public NoteFragment() {
         // Required empty public constructor
     }
 
-    public static NoteFragment newInstance(int index, CardSourceImp notes) {
+    public static NoteFragment newInstance(int index, CardSource notes) {
         NoteFragment fragment = new NoteFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_INDEX, index);
-        args.putParcelable(ARG_NOTES, notes);
+        args.putParcelable(ARG_NOTES, (Parcelable) notes);
         fragment.setArguments(args);
         return fragment;
     }

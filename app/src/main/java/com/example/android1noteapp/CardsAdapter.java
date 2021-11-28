@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHolder> {
 
     private final Activity activity;
-    private CardSourceImp source;
+    private CardSource source;
     private OnCardClickListener clickListener;
     int menu_position = -1;
 
@@ -28,7 +28,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardViewHold
         this.clickListener = clickListener;
     }
 
-    public CardsAdapter(Activity activity, CardSourceImp notesList) {
+    public CardsAdapter(Activity activity, CardSource notesList) {
         this.activity = activity;
         this.source = notesList;
     }

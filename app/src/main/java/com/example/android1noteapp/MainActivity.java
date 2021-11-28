@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.GregorianCalendar;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -124,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
             listNoteFragment.adapter.notifyItemRemoved(position);
             return true;
         } else if (item.getItemId() == R.id.action_context_update_note){
-            //listNoteFragment.source.updateNote(listNoteFragment.adapter.getMenu_position(), );
             Notes note = listNoteFragment.source.getNote(position);
             EditNoteFragment editNoteFragment = EditNoteFragment.newInstance(note.getNameNote(),note.getDescriptionNote(),  position);
             getSupportFragmentManager()
@@ -134,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
             return true;
         }
-
         return super.onContextItemSelected(item);
     }
 
